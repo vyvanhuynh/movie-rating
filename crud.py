@@ -1,9 +1,9 @@
 """ To create function for CRUD operations """
 
 from model import db, User, Movie, Rating, connect_to_db
-from flask_sqlalchemy import SQLAlchemy
+# from flask_sqlalchemy import SQLAlchemy
 
-db = SQLAlchemy()
+# db = SQLAlchemy()
 
 def create_user(email, password):
     """ function to add new user to users table
@@ -30,16 +30,18 @@ def create_movie(title, overview, release_date, poster_path):
 
     return movie
 
-def create_rating(user, movie, score):
+def create_rating(user, movie, score): 
+    #   unsure of inputs for this function; tried vy@gmail.com, Dumbo, 9 but didnt work
     """ function to create and return a new rating """
 
-    rat = Rating(score=score,
+    rat = Rating(score = score,
                  movie = movie,
-                 user = user ) 
+                 user  = user ) 
 
     db.session.add(rat)
     db.session.commit()
 
+    return rat
 
 
 
@@ -50,3 +52,4 @@ def create_rating(user, movie, score):
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)
+    
