@@ -1,9 +1,7 @@
 """ To create function for CRUD operations """
 
 from model import db, User, Movie, Rating, connect_to_db
-# from flask_sqlalchemy import SQLAlchemy
 
-# db = SQLAlchemy()
 
 def create_user(email, password):
     """ function to add new user to users table
@@ -42,6 +40,13 @@ def create_rating(user, movie, score):
     db.session.commit()
 
     return rat
+
+def list_all_movies():
+    return Movie.query.all()
+
+def get_movie_by_id(movie_id):  
+    return Movie.query.get(movie_id)
+    
 
 
 
