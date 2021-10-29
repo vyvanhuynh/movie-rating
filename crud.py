@@ -50,7 +50,11 @@ def get_movie_by_id(movie_id):
 def list_all_users():
     return User.query.all()
 
-
+def get_user_by_email(email):
+    return User.query.filter(User.email == email).first()
+    
+def validate_login(email,password):
+    return User.query.filter(User.email == email, User.password == password).first()
 
 
 

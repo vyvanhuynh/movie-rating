@@ -30,12 +30,29 @@ def show_users():
     users = crud.list_all_users()
     return render_template('all_users.html', users=users)
 
+@app.route('/users', methods= ["POST"])
+def register_user():
+    email = request.form.get("email")
+    password = request.form.get("password")
+    db_email = crud.get_user_by_email(email)
+    if db_email:
+        flash(f"{email} is already registered. Please try a different email")
+    else:
+        user = crud.create_user(email, password)         
+        flash("You was created successfully and you can now log in")
+    return redirect('/')
 
 
-
-
-
-
+@app.route('/login', methods= ["POST"])
+def login():
+    email = request.form.get("email")
+    password = request.form.get("password")
+    db_login = crud.validate_login(email,password)
+    if db_login:
+        flash(f"Welcome,{email}")
+    else:       
+        flash("The email and password don't match")
+    return redirect('/')
 
 
 
