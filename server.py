@@ -49,16 +49,21 @@ def login():
     password = request.form.get("password")
     db_login = crud.validate_login(email,password)
     if db_login:
+        session['email'] = email
         flash(f"Welcome,{email}")
     else:       
         flash("The email and password don't match")
     return redirect('/')
 
 
+@app.route('/ratings', methods= ["POST"])
+def rate_a_movie():
+    score = int(request.form.get("score"))
+    movie = request.form.get("movie")
+    user = session['email']
+    db_rat = crud.create_rating(user, movie, score)
 
-
-
-
+    return redirect('/')
 
 
 
