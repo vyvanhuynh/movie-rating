@@ -46,7 +46,9 @@ def list_all_movies():
 
 def get_movie_by_id(movie_id):  
     return Movie.query.get(movie_id)
-    
+
+def list_all_users():
+    return User.query.all()
 
 
 

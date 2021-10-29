@@ -20,12 +20,15 @@ def show_movies():
     movies = crud.list_all_movies()
     return render_template("all_movies.html",movies=movies)
 
-@app.route('/movie/<movie_id>')
+@app.route('/movies/<movie_id>')
 def show_movie_details(movie_id):
     movie = crud.get_movie_by_id(movie_id)
     return render_template('movie_details.html', movie=movie)
 
-
+@app.route('/users')
+def show_users():
+    users = crud.list_all_users()
+    return render_template('all_users.html', users=users)
 
 
 
